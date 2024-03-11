@@ -10,30 +10,36 @@ import { Post } from './components/Post';
 
 export default function App() {
   const [items, setItems] = React.useState();
+  console.log(0)
 
   React.useEffect(() => {
     axios
     .get('https://65e841a54bb72f0a9c4ec158.mockapi.io/news')
-    .then(({ data }) => {
-      setItems(data);
+    // .get('https://1xstavka.ru/LiveFeed/Get1x2_VZip')
+    .then(( data ) => {
+      console.log(data.data)
+      setItems(data.data);
     })
     .catch(err => {
+      console.log(2)
       console.error(err);
       Alert.alert('Custom title', 'Error in React.useEffect');
     })
   }, []);
 
+  console.log(3)
   return (
     <View>
       {items.map((obj) => (
-      <Post 
-        // key={obj.id}
-        title={obj.title}
+      <Post
+        // title={obj.title}
+        title={'title'}
+        createdAt={'date'}
         // text={obj.text}
-        createdAt={obj.id} 
-        />
+        // createdAt={obj.createdAt}
+      />
       ))}
-      {/* <StatusBar theme='auto' /> */}
+      <StatusBar theme='auto' />
     </View>
   );
 }
