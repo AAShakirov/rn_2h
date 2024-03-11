@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { StatusBar } from 'expo-status-bar';
 
-import { StyleSheet, Alert, Text, View, Image } from 'react-native';
+import { StyleSheet, Alert, Text, View, Image, FlatList } from 'react-native';
 import { Post } from './components/Post';
 
 
@@ -30,15 +30,19 @@ export default function App() {
   console.log(3)
   return (
     <View>
-      {items.map((obj) => (
-      <Post
-        // title={obj.title}
-        title={'title'}
-        createdAt={'date'}
-        // text={obj.text}
-        // createdAt={obj.createdAt}
+      <FlatList
+        data={items}
+        renderItem={({ item }) => (<Post title={item.title} createdAt={item.createdAt} />
+      )}
       />
-      ))}
+      {/* {items.map((obj) => (
+      <Post
+        title={obj.title}
+        createdAt={obj.createdAt}
+        // title={'text'}
+        // createdAt={'createdAt'}
+      />
+      ))} */}
       <StatusBar theme='auto' />
     </View>
   );

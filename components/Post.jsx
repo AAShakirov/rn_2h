@@ -5,7 +5,7 @@ const PostView = styled.View`
   flex-direction: row;
   padding: 15px;
   border-bottom-width: 5px;
-  border-bottom-color: rgba(0, 255, 0, 0.15);
+  border-bottom-color: rgba(0, 0, 0, 0.15);
   border-bottom-style: solid;
 `;
 
@@ -34,7 +34,7 @@ const PostDate = styled.Text`
 
 export const Post = ({ title, createdAt}) => {
     return <PostView>
-    {/* <PostImage source={{ uri: imageUrl }} /> */}
+    <PostImage source={{ uri: 'https://cdn.motor1.com/images/mgl/VPBlK/s1/1x1/tesla-model-s.webp' }} />
     <PostDetails>
     <PostTitle> {title} </PostTitle>
     <PostDate> {createdAt} </PostDate>
