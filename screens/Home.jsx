@@ -3,7 +3,21 @@ import axios from 'axios';
 import { StatusBar, StyleSheet, Alert, Text, View, Image, FlatList, ActivityIndicator, RefreshControl, TouchableOpacity } from 'react-native';
 import { Post } from '../components/Post';
 
-
+// https://mockapi.io/projects/65e841a54bb72f0a9c4ec159 
+// [{
+//   "createdAt": "2024-03-12T04:52:40.909Z",
+//   "title": "Global Intranet Director",
+//   "text": "Eum saepe voluptatibus voluptatum voluptates corporis.",
+//   "image": "https://cdn.motor1.com/images/mgl/VzXjJ7/s1/tesla-model-s-plaid-blue-2.webp",
+//   "id": "1"
+// },
+// {
+//   "createdAt": "2024-03-11T20:01:37.344Z",
+//   "title": "District Markets Administrator",
+//   "text": "tenetur",
+//   "image": "https://cdn.motor1.com/images/mgl/VPBlK/s1/1x1/tesla-model-s.webp",
+//   "id": "2"
+// }]
 
 export const HomeScreen = ( { navigation } ) => {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -15,7 +29,6 @@ export const HomeScreen = ( { navigation } ) => {
     axios
     .get('https://65e841a54bb72f0a9c4ec158.mockapi.io/news')
     .then(( data ) => {
-      // console.log(data.data)
       setItems(data.data);
     })
     .catch(err => {
@@ -48,7 +61,7 @@ export const HomeScreen = ( { navigation } ) => {
         refreshControl={<RefreshControl refreshing={isLoading} onRefresh={fetchPosts}/>}
         data={items}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('FullPost', { id: item.id }, { title: item.title })}>
+          <TouchableOpacity onPress={() => navigation.navigate('FullPost', { id: item.id,  title: item.title })}>
             <Post title={item.title} createdAt={item.createdAt} />
           </TouchableOpacity>
         

@@ -20,14 +20,17 @@ const PostText = styled.Text`
   font-size: 18px;
 `;
 
-export const FullPostScreen = ({ route }) => {
+export const FullPostScreen = ({ route, navigation }) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [response, setData] = React.useState();
-  const { id, title} = route.params;
+  const { id, title } = route.params;
 
-  console.log(route)
+  console.log(navigation)
 
   React.useEffect(() => {
+    navigation.setOptions({
+      title,
+    });
     axios
       .get('https://65e841a54bb72f0a9c4ec158.mockapi.io/news/' + id)
       .then(( response ) => {
