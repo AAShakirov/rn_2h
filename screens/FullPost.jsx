@@ -25,8 +25,6 @@ export const FullPostScreen = ({ route, navigation }) => {
   const [response, setData] = React.useState();
   const { id, title } = route.params;
 
-  console.log(navigation)
-
   React.useEffect(() => {
     navigation.setOptions({
       title,
@@ -34,7 +32,6 @@ export const FullPostScreen = ({ route, navigation }) => {
     axios
       .get('https://65e841a54bb72f0a9c4ec158.mockapi.io/news/' + id)
       .then(( response ) => {
-        console.log(response.data)
         setData(response);
       })
       .catch(err => {
