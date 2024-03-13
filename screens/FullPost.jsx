@@ -1,27 +1,65 @@
 import React from "react";
+import axios from "axios";
 import { View } from "react-native";
 import styled from "styled-components/native";
+import { Loading } from "../components/Loading";
 
 const PostImage = styled.Image`
   width: 100%;
   height: 50%;
   margin-bottom: 20px;
+  border-radius: 12px;
+`;
+
+const PostTitle = styled.Text`
+  font-size: 18px;
+  font-weight: 700;
 `;
 
 const PostText = styled.Text`
   font-size: 18px;
 `;
 
-export const FullPostScreen = () => {
+export const FullPostScreen = ({ route }) => {
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [response, setData] = React.useState();
+  const { id, title} = route.params;
+
+  console.log(route)
+
+  React.useEffect(() => {
+    axios
+      .get('https://65e841a54bb72f0a9c4ec158.mockapi.io/news/' + id)
+      .then(( response ) => {
+        console.log(response.data)
+        setData(response);
+      })
+      .catch(err => {
+        console.error(err);
+        Alert.alert('Custom title', 'Error in React.useEffect');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View style={{ marginTop:50, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Loading />
+      </View>
+    );
+  }
+
   return (
     <View style={{ padding: 20 }} >
-      <PostImage source={{ uri:'data:image/jpeg;base64,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' }} />
+      <PostImage source={{ uri: response.data.image }} />
+      <PostTitle>
+        { response.data.title }
+      </PostTitle>
       <PostText>
-        Why is it here?
-        Not only does Tesla still hold a long-established lead in powertrain technology, offering whiplash performance and outstanding range, but it’s also the only car here built on a bespoke EV platform. Hence better packaging and gargantuan loadspace.
-        Any clever stuff?
-        It’s all about the touchscreen. It has to be; there isn’t anything else to play with, so bad luck if you don’t care for the somewhat washed-out graphics and tiny speedometer read-out. But there’s so much information about the car’s immediate surroundings you needn’t bother looking out of the windscreen.
+        { response.data.text }
       </PostText>
     </View>
-  )
-}
+  );
+};

@@ -5,7 +5,7 @@ import { Post } from '../components/Post';
 
 
 
-export const HomeScreen = () => {
+export const HomeScreen = ( { navigation } ) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [items, setItems] = React.useState();
 
@@ -48,7 +48,7 @@ export const HomeScreen = () => {
         refreshControl={<RefreshControl refreshing={isLoading} onRefresh={fetchPosts}/>}
         data={items}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => alert('Touched')}>
+          <TouchableOpacity onPress={() => navigation.navigate('FullPost', { id: item.id }, { title: item.title })}>
             <Post title={item.title} createdAt={item.createdAt} />
           </TouchableOpacity>
         
