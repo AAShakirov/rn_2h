@@ -3,6 +3,8 @@ import axios from "axios";
 import { View } from "react-native";
 import styled from "styled-components/native";
 import { Loading } from "../components/Loading";
+import example_link from "../screens/Home";
+
 
 const PostImage = styled.Image`
   width: 100%;
@@ -30,7 +32,7 @@ export const FullPostScreen = ({ route, navigation }) => {
       title,
     });
     axios
-      .get('https://65e841a54bb72f0a9c4ec158.mockapi.io/news/' + id)
+      .get(example_link + id)
       .then(( response ) => {
         setData(response);
       })

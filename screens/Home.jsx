@@ -3,21 +3,7 @@ import axios from 'axios';
 import { StatusBar, StyleSheet, Alert, Text, View, Image, FlatList, ActivityIndicator, RefreshControl, TouchableOpacity } from 'react-native';
 import { Post } from '../components/Post';
 
-// https://mockapi.io/projects/65e841a54bb72f0a9c4ec159 
-// [{
-//   "createdAt": "2024-03-12T04:52:40.909Z",
-//   "title": "Global Intranet Director",
-//   "text": "Eum saepe voluptatibus voluptatum voluptates corporis.",
-//   "image": "https://cdn.motor1.com/images/mgl/VzXjJ7/s1/tesla-model-s-plaid-blue-2.webp",
-//   "id": "1"
-// },
-// {
-//   "createdAt": "2024-03-11T20:01:37.344Z",
-//   "title": "District Markets Administrator",
-//   "text": "tenetur",
-//   "image": "https://cdn.motor1.com/images/mgl/VPBlK/s1/1x1/tesla-model-s.webp",
-//   "id": "2"
-// }]
+const example_link = 'https://0123456789.mockapi.io/news'
 
 export const HomeScreen = ( { navigation } ) => {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -27,7 +13,7 @@ export const HomeScreen = ( { navigation } ) => {
   const fetchPosts = () => {
     setIsLoading(true);
     axios
-    .get('https://65e841a54bb72f0a9c4ec158.mockapi.io/news')
+    .get(example_link)
     .then(( data ) => {
       setItems(data.data);
     })

@@ -3,9 +3,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { HomeScreen } from "./Home";
 import { FullPostScreen } from "./FullPost";
 
-const Stack = createNativeStackNavigator();
 
-// <Routes>....</Routes> => Stack.Navigator
+const Stack = createNativeStackNavigator();
 
 export const Navigation = () => {
   return (
